@@ -20,14 +20,28 @@ const Container = () => {
                 stepsBeforeSave: 0, 
                 options: {
                     local: { 
-                        key: 'gjsProject',
+                        key: 'gjsPage',
                     },
                 }
+            },
+            
+            /*use this if need upload image to cloud. by default save images as base64*/
+            /*
+            assetManager: {
+                storeOnChange: true,
+                storeAfterUpload: true,
+                upload: `<image_upload_api>`,
+                credentials: 'omit',
+                uploadName: 'images',
+                autoAdd: true,
+                embedAsBase64: true,
+                multiUpload: false
             }
+            */
         });
 
-        editor.on('component:update', e => {
-            const pageBody = editor.runCommand('gjs-get-inlined-html')
+        editor.on('component:select', e => {
+            const pageBody = editor.getHtml()
             localStorage.setItem("pageContent", pageBody);
         });
 
